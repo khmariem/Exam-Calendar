@@ -1,0 +1,4 @@
+maths,physique,geo
+physique,maths,histoire
+maths,physique,geo
+geo,maths,physique/
