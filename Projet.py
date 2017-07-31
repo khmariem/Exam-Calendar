@@ -45,16 +45,21 @@ def construct_graph(data):
 
     @return: a dictionary which is the graph built from our data.
     '''
-    g=dict()
+    g=[]
+    visited=[]
+    c=0
     for l in data:
         for k in l:
-            print(k)
-            if (not g.__contains__(k)):
-                g[k]={}
+            if (not k in visited):
+                visited.append(k)
+                g.append([])
+                c=visited.index(k)
+            else:
+                c=visited.index(k)
             for k1 in l:
-                if k1!=k:
-                    g[k]={g[k],k1}
-                    
+                if (k1!=k) and (k1 not in g[c]):
+                    g[c].append(k1)
+                                        
     return g
 
 
@@ -69,8 +74,8 @@ def max_degree(graph):
     
     c=0    
     for i in graph:
-        if len(g[i])>c:
-            c=len(g[i])
+        if len(i)>c:
+            c=len(i])
             
     return c
 
@@ -110,7 +115,7 @@ def vertice_degree(graph):
     
     L=[] 
     for i in graph:
-        L.append(len(graph[i]),i)
+        L.append(len(i),i)
 
     L.sort()
     L.reverse()
