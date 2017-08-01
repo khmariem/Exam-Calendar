@@ -1,4 +1,13 @@
-maths,physique,geo
-physique,maths,histoire
-maths,physique,geo
-geo,maths,physique/
+maths,physics
+physics,maths
+maths,history
+game_theory,graph_theory
+algorithmics,game_theory
+algorithmics,marketing
+maths,physics
+maths,history
+geo,maths
+maths,history
+maths,physics
+physics,maths
+maths,history/
