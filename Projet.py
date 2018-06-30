@@ -1,7 +1,7 @@
 
 #################name of file and other variables########################################################
 
-
+from math import *
 name_file = 'data.txt'
 
 
@@ -54,22 +54,22 @@ def construct_graph(data):
     @return visited: the list of the vertices following the same order as in the graph g. So, the neighbours of visited[i] are
     graph[i].
     '''
-    g=[]
+    graph=[]
     visited=[]
-    c=0
-    for l in data:
-        for k in l:
-            if (not k in visited):
-                visited.append(k)
-                g.append([])
-                c=visited.index(k)
+    subject_index=0
+    for line in data:
+        for subject in line:
+            if (not subject in visited):
+                visited.append(subject)
+                graph.append([])
+                subject_index=visited.index(subject)
             else:
-                c=visited.index(k)
-            for k1 in l:
-                if (k1!=k) and (k1 not in g[c]):
-                    g[c].append(k1)
+                subject_index=visited.index(subject)
+            for subject1 in line:
+                if (subject1!=subject) and (subject1 not in graph[subject_index]):
+                    graph[subject_index].append(subject1)
                                         
-    return (g,visited)
+    return (graph,visited)
 
 
 
@@ -89,12 +89,12 @@ def max_degree(graph):
     @return: the integer conveying the maximum degree of the graph.
     '''
     
-    c=0    
-    for i in graph:
-        if len(i)>c:
-            c=len(i)
+    max_deg=0    
+    for element in graph:
+        if len(element)>max_deg:
+            max_deg=len(element)
             
-    return c
+    return max_deg
 
 
     
@@ -145,25 +145,38 @@ def colour_graph(graph,vertices):
     can occur.
     '''
 
-    M=[1 for j in range(len(graph))]
+    coloured_graph=[1 for j in range(len(graph))]
     
     if len(graph)==0:
-        return 0
+        return (0,0)
 
     L=vertice_degree(graph,vertices)
-    for i in range(0,len(L)):
-            for k in graph[vertices.index(L[i][1])]:            
-                c=vertices.index(k)
-                if M[vertices.index(L[i][1])]==M[c]:
-                    M[c]=M[c]+1
+    for i in range(len(L)):
+            for subject_per_student in graph[vertices.index(L[i][1])]:            
+                current_colour=vertices.index(subject_per_student)
+                if coloured_graph[vertices.index(L[i][1])]==coloured_graph[current_colour]:
+                    coloured_graph[current_colour]=coloured_graph[current_colour]+1
 
                 
-    return (M,max(M))
+    return (coloured_graph,max(coloured_graph))
                  
 
                  
-    
+if __name__ == "__main__":
+    data=read_data(name_file)
+    (graph,vertices)=construct_graph(data)
+    (M,m)=colour_graph(graph,vertices)
 
+    for i in range(0,m):
+        indices = [j for j, x in enumerate(M) if x == i+1]
+        print('++++++++ Day '+str(i+1)+' ++++++++')
+        print('+                     +')
+        
+        for k in indices:
+            print("+"+int(floor((21-len(vertices[k]))/2))*" "+vertices[k]+int(21-len(vertices[k])-floor((21-len(vertices[k]))/2))*" "+"+")
+            
+        print('+                     +')
+        print("+++++++++++++++++++++++")
 
 
 

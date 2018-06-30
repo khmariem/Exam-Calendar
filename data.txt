@@ -1,5 +1,6 @@
 maths,physics
 physics,maths
+physics,history
 maths,history
 game_theory,graph_theory
 algorithmics,game_theory
