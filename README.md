@@ -1,4 +1,5 @@
 # Exam-Calendar
+:calendar:
 This is a project that was inspired by the application of the graph theory to find the most suitable exam calendar using less days.
 
 It uses a file that already has the data we need. It consists of the choice subjects for all the students; "data.txt" is a small file that I created to test my work. For example, the first line comprises the courses that the first student is enrolled into. You can enrich it, if you want, with other lines. Yet, it must end with "/" as shown in the initial text to prevent bugs.
